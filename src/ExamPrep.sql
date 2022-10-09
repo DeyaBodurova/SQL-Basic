@@ -82,3 +82,17 @@ create table players_coaches
     coach_id  int,
     primary key (player_id, coach_id)
 );
+
+
+# 1. Insert
+
+insert into coaches(first_name, last_name, salary, coach_level)
+    (select p.first_name,
+            p.last_name,
+            p.salary * 2                      as salary,
+            concat(char_length(p.first_name)) as coach_level
+     from players as p
+     where p.age >= 45);
+
+# 2. Update
+
