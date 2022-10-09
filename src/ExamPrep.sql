@@ -103,3 +103,6 @@ where (c.first_name like 'a%')
 
 # 3. Delete
 
+delete
+from players as p
+where p.age >= 45;
