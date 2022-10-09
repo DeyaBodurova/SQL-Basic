@@ -96,3 +96,10 @@ insert into coaches(first_name, last_name, salary, coach_level)
 
 # 2. Update
 
+update coaches as c
+set c.coach_level = c.coach_level + 1
+where (c.first_name like 'a%')
+  and c.id in (select coach_id from players_coaches);
+
+# 3. Delete
+
