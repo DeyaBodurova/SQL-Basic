@@ -27,7 +27,6 @@ create table towns
     primary key (id),
     foreign key (country_id) references countries (id)
 );
-
 create table stadiums
 (
     id       int auto_increment,
