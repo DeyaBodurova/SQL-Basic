@@ -139,4 +139,3 @@ FROM teams as t
 group by t.id
 order by players_count desc, fan_base desc;
 
-
