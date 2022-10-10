@@ -12,6 +12,7 @@ create table coaches
     salary      decimal(10, 2) default (0) not null,
     coach_level int            default (0) not null
 );
+
 create table countries
 (
     id   int primary key,
