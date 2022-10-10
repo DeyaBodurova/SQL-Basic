@@ -18,6 +18,7 @@ create table countries
     id   int primary key,
     name varchar(45)
 );
+
 create table towns
 (
     id         int auto_increment,
