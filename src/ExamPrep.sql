@@ -138,3 +138,4 @@ FROM teams as t
          left join players as p on t.id = p.team_id
 group by t.id
 order by players_count desc, fan_base desc;
+
