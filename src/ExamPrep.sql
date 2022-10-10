@@ -84,7 +84,6 @@ create table players_coaches
     primary key (player_id, coach_id)
 );
 
-
 # 2. Insert
 
 insert into coaches(first_name, last_name, salary, coach_level)
