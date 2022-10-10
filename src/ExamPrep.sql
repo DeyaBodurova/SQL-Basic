@@ -1,5 +1,6 @@
 create database fsd;
 
+
 use fsd;
 
 # 1. Create tables
