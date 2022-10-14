@@ -168,3 +168,20 @@ $$
 
 select udf_actor_history_movies_count('Stephan Lundberg');
 
+# 11. Movie awards
+
+delimiter $$
+create procedure udp_award_movie(movie_title VARCHAR(50))
+begin
+    update actors as a
+    set a.awards = a.awards + 1
+    where (select *
+           from actors
+                    join movies_actors as ma on ma.actor_id = a.id
+                    join movies as m on m.id = ma.movie_id
+           where m.title = movie_title);
+end
+$$
+
+delimiter ;
+CALL udp_award_movie('Tea For Two');
