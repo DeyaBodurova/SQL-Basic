@@ -103,12 +103,11 @@ order by currency desc, id;
 
 # 6. Old movies
 
-select
-    mai.id as id,
-    m.title as title,
-    mai.runtime as runtime,
-    mai.budget as budget,
-    mai.release_date as release_date
+select mai.id           as id,
+       m.title          as title,
+       mai.runtime      as runtime,
+       mai.budget       as budget,
+       mai.release_date as release_date
 from movies_additional_info as mai
          join movies as m on m.movie_info_id = mai.id
 where year(mai.release_date) between 1996 and 1999
