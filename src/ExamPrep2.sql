@@ -174,12 +174,10 @@ delimiter $$
 create procedure udp_award_movie(movie_title VARCHAR(50))
 begin
     update actors as a
+        join movies_actors as ma on ma.actor_id = a.id
+        join movies as m on m.id = ma.movie_id
     set a.awards = a.awards + 1
-    where (select *
-           from actors as a
-                    join movies_actors as ma on ma.actor_id = a.id
-                    join movies as m on m.id = ma.movie_id
-           where m.title = movie_title);
+    where m.title = movie_title;
 end
 $$
 
