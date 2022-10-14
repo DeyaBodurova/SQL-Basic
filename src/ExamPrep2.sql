@@ -147,3 +147,4 @@ select mv.title                            as title,
 from movies as mv
          join movies_additional_info as m on mv.movie_info_id = m.id
 order by budget desc;
+

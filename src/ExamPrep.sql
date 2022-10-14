@@ -183,6 +183,10 @@ begin
 end
 $$
 
+delimiter ;
+SELECT udf_stadium_players_count('Jaxworks');
+
+
 # 11. Find good playmaker by teams
 
 delimiter $$
@@ -205,3 +209,5 @@ begin
     limit 1;
 end
 $$
+delimiter ;
+CALL udp_find_playmaker(20, 'Skyble');
