@@ -142,4 +142,15 @@ order by players_count desc, fan_base desc;
 
 # 8. The fastest player by town
 
+select
+    Max(sd.speed) as max_speed,
+    towns.name as town_name
+from skills_data as sd
+         join players as p on sd.id = p.skills_data_id
+         join teams as t on p.team_id = t.id
+         join stadiums as s on s.id = t.stadium_id
+         join towns on towns.id = s.town_id
+where t.name != 'Devify'
+group by towns.id
+order by max_speed desc;
 
