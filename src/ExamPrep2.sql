@@ -97,8 +97,7 @@ where m.country_id is null;
 
 # 5. Countries
 
-select
-    *
+select *
 from countries as c
-order by currency desc,id;
+order by currency desc, id;
 
