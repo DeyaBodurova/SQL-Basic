@@ -90,7 +90,8 @@ where id >= 15
 
 # 4. Delete
 
-delete c from countries as c
-                  left join movies as m on c.id =m.country_id
+delete c
+from countries as c
+         left join movies as m on c.id = m.country_id
 where m.country_id is null;
 
