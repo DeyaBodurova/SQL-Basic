@@ -85,4 +85,12 @@ where a.id <= 10;
 
 update movies_additional_info
 set runtime = runtime - 10
-where  id >=15 and id <=25;
+where id >= 15
+  and id <= 25;
+
+# 4. Delete
+
+delete c from countries as c
+                  left join movies as m on c.id =m.country_id
+where m.country_id is null;
+
