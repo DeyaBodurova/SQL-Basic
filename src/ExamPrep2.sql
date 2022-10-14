@@ -135,3 +135,15 @@ group by c.name
 having movies_count >= 7
 order by name desc;
 
+# 9. Rating system
+
+select mv.title                            as title,
+       (case
+            when m.rating <= 4 then 'poor'
+            when m.rating <= 7 then 'good'
+            else 'excellent' end)          as rating,
+       if(m.has_subtitles, 'english', '-') as subtitles,
+       m.budget                            as budget
+from movies as mv
+         join movies_additional_info as m on mv.movie_info_id = m.id
+order by budget desc;
