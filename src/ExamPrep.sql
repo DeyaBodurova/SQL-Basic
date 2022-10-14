@@ -189,17 +189,17 @@ delimiter $$
 create procedure udp_find_playmaker(min_dribble_points int,
                                     team_name varchar(45))
 begin
-    select
-        concat(p.first_name, ' ', p.last_name) as full_name,
-        p.age,
-        p.salary,
-        sk.dribbling,
-        sk.speed,
-        tm.name
+    select concat(p.first_name, ' ', p.last_name) as full_name,
+           p.age,
+           p.salary,
+           sk.dribbling,
+           sk.speed,
+           tm.name
     from players as p
              join skills_data as sk on p.skills_data_id = sk.id
              join teams as tm on p.team_id = tm.id
-    where sk.dribbling > min_dribble_points and tm.name=team_name
+    where sk.dribbling > min_dribble_points
+      and tm.name = team_name
       and sk.speed > (select avg(speed) from skills_data)
     order by speed desc
     limit 1;
