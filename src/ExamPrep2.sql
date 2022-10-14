@@ -113,3 +113,16 @@ from movies_additional_info as mai
 where year(mai.release_date) between 1996 and 1999
 order by runtime, id
 limit 20;
+
+# 7. Movie casting
+
+select
+    concat_ws(' ', first_name, last_name) as full_name,
+    concat(reverse(a.last_name), char_length(last_name),'@cast.com') as email,
+    (2022 - year(a.birthdate))as age,
+    a.height
+from actors as a
+         left join movies_actors as ma on a.id = ma.actor_id
+where ma.movie_id is null
+order by height;
+
