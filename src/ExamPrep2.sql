@@ -125,3 +125,13 @@ from actors as a
 where ma.movie_id is null
 order by height;
 
+# 8. International festival
+
+select c.name      as name,
+       count(m.id) as movies_count
+from countries as c
+         join movies as m on c.id = m.country_id
+group by c.name
+having movies_count >= 7
+order by name desc;
+
