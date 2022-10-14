@@ -148,3 +148,23 @@ from movies as mv
          join movies_additional_info as m on mv.movie_info_id = m.id
 order by budget desc;
 
+# 10. History movies
+
+delimiter $$
+create function udf_actor_history_movies_count(full_name VARCHAR(50))
+    returns int
+    deterministic
+begin
+    return (select count(g.name)
+            from actors as a
+                     join movies_actors as ma on ma.actor_id = a.id
+                     join genres_movies as gm on gm.movie_id = ma.movie_id
+                     join genres as g on g.id = gm.genre_id
+            where concat_ws(' ', a.first_name, a.last_name) = full_name
+              and g.name = 'history');
+end
+$$
+
+
+select udf_actor_history_movies_count('Stephan Lundberg');
+
