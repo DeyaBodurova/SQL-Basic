@@ -142,9 +142,8 @@ order by players_count desc, fan_base desc;
 
 # 8. The fastest player by town
 
-select
-    Max(sd.speed) as max_speed,
-    towns.name as town_name
+select Max(sd.speed) as max_speed,
+       towns.name    as town_name
 from skills_data as sd
          join players as p on sd.id = p.skills_data_id
          right join teams as t on p.team_id = t.id
@@ -152,20 +151,34 @@ from skills_data as sd
          join towns on towns.id = s.town_id
 where t.name != 'Devify'
 group by towns.id
-order by max_speed desc,town_name;
+order by max_speed desc, town_name;
 
 # 9. Total salaries and players by country
 
-select
-    c.name as name,
-    (count(p.id))as total_count_of_players,
-    sum(p.salary) as total_sum_of_salaries
-from
-    countries as c
-        left join towns as tw on c.id = tw.country_id
-        left join stadiums as st on tw.id = st.town_id
-        left join teams on st.id = teams.stadium_id
-        left join players as p on teams.id =p.team_id
+select c.name        as name,
+       (count(p.id)) as total_count_of_players,
+       sum(p.salary) as total_sum_of_salaries
+from countries as c
+         left join towns as tw on c.id = tw.country_id
+         left join stadiums as st on tw.id = st.town_id
+         left join teams on st.id = teams.stadium_id
+         left join players as p on teams.id = p.team_id
 group by c.name
 order by total_count_of_players desc, name;
 
+
+# 10. Find all players that play on stadium
+
+delimiter $$
+create function udf_stadium_players_count(stadium_name VARCHAR(30))
+    returns int
+    deterministic
+begin
+    return
+        (select count(p.id)
+         from players as p
+                  join teams as t on p.team_id = t.id
+                  join stadiums as s on t.stadium_id = s.id
+         where s.name = stadium_name);
+end
+$$
