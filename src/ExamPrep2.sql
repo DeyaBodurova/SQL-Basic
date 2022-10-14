@@ -95,3 +95,10 @@ from countries as c
          left join movies as m on c.id = m.country_id
 where m.country_id is null;
 
+# 5. Countries
+
+select
+    *
+from countries as c
+order by currency desc,id;
+
