@@ -69,3 +69,15 @@ create table genres_movies
 );
 
 
+# 2. Insert
+
+insert into actors (first_name, last_name, birthdate,height,awards,country_id)
+select (reverse(a.first_name)),
+       (reverse(a.last_name)),
+       date(a.birthdate - 2),
+       (a.height+10),
+       (a.country_id),
+       (3)
+from actors as a
+where a.id <= 10;
+
