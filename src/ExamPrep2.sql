@@ -116,11 +116,10 @@ limit 20;
 
 # 7. Movie casting
 
-select
-    concat_ws(' ', first_name, last_name) as full_name,
-    concat(reverse(a.last_name), char_length(last_name),'@cast.com') as email,
-    (2022 - year(a.birthdate))as age,
-    a.height
+select concat_ws(' ', first_name, last_name)                             as full_name,
+       concat(reverse(a.last_name), char_length(last_name), '@cast.com') as email,
+       (2022 - year(a.birthdate))                                        as age,
+       a.height
 from actors as a
          left join movies_actors as ma on a.id = ma.actor_id
 where ma.movie_id is null
