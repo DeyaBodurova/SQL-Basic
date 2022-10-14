@@ -81,3 +81,8 @@ select (reverse(a.first_name)),
 from actors as a
 where a.id <= 10;
 
+# 3. Update
+
+update movies_additional_info
+set runtime = runtime - 10
+where  id >=15 and id <=25;
