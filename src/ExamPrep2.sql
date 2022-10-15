@@ -3,7 +3,6 @@
 -- create database softuni_imdb;
 -- use softuni_imdb;
 
-
 create table countries
 (
     id        int primary key auto_increment,
